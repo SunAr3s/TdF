@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+	
+	
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<title>Jet de Dé 6</title>
+</head> 
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
+	  <!-- Brand and toggle get grouped for better mobile display -->
+	  <div class="navbar-header">
+	  
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+	  
+	    <a class="navbar-brand" href="#">Jet de Dés</a>
+	  </div>
+	
+	  <!-- Collect the nav links, forms, and other content for toggling -->
+	  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="#" onClick="reset();"><span class="glyphicon glyphicon-repeat"></span></a></li>
+	      <li><a href="#" onClick="jetDes(1, 1, 6);">1 Dé</a></li>
+	      <li><a href="#" onClick="jetDes(2, 1, 6);">2 Dés</a></li>
+	      <li><a href="#" onClick="jetDes(3, 1, 6);">3 Dés</a></li>
+	      <li><a href="#" onClick="jetDes(4, 1, 6);">4 Dés</a></li>
+	      <li><a href="#" onClick="jetDes(5, 1, 6);">5 Dés</a></li>
+	      <li class="dropdown">
+	        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Plus de Dés <b class="caret"></b></a>
+	        <ul class="dropdown-menu">
+				<li><a href="#" onClick="jetDes(20, 1, 6);">10 Dés</a></li>
+				<li><a href="#" onClick="jetDes(20, 1, 6);">20 Dés</a></li>
+				<li><a href="#" onClick="jetDes(50, 1, 6);">50 Dés</a></li>
+				<li><a href="#" onClick="jetDes(75, 1, 6);">75 Dés</a></li>
+				<li><a href="#" onClick="jetDes(100, 1, 6);">100 Dés</a></li>
+	        </ul>
+	      </li>
+	    </ul>
+	   </div><!-- /.navbar-collapse -->
+	</nav>
+
+ <div class="container">
+	<div class="panel-body" id="result" style="word-wrap: break-word;"></div>
+	
+	<div class="alert alert-info">
+		<strong>Total : <span id="total"0</strong></span></strong><br />
+		<strong>Nb Dés : <span id="nb"0</strong></span></strong>
+	</div>
+ </div>
+</body>
+<script>
+	var somme = 0, nb = 0;
+
+	function jetDe(min, max) {
+		var value = Math.round(Math.random() * (max - 1)) + 1;
+		somme += value;
+		nb++;
+		
+		$('#result').append('<span class="badge">'+value+'</span> ');
+		$('#total').html(somme);
+		$('#nb').html(nb);
+	}
+	
+	function jetDes(nbDe, min, max) {
+		$('#result').append('<div>');
+		for(var i = 0; i < nbDe; i++) {
+			jetDe(min, max);
+		}
+		$('#result').append('</div>');
+	}
+	
+	function reset() {
+		$('#result').html('');
+		$('#total').html('');
+		$('#nb').html('');
+		somme = 0;
+		nb = 0;
+	}
+</script>
+</html>
